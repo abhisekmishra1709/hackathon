@@ -104,6 +104,13 @@ The synchronous detection engine implements:
 
 Configure rule switches, thresholds, windows, country codes, counterparties, and exchange rates under `sentinel.rules` in `src/main/resources/application.yml`, through environment variables, or at runtime through the ADMIN-only `GET/PUT /api/v1/rules` endpoint. Runtime changes are audited. Alerts aggregate by account, matched rules, and UTC day.
 
+## Dashboard
+
+Beyond the alert queue and case detail view, the dashboard includes:
+
+- **Risk heatmap** — rule code vs. risk band (0–39, 40–69, 70–89, 90–100) matrix, shaded by alert count, so analysts can spot which typologies are driving severity.
+- **Customer transaction timeline** — opening an alert also calls `GET /api/v1/alerts/{id}/timeline`, which returns the full chronological transaction history for that alert's account (ADMIN/ANALYST only); evidence transactions are highlighted in the drawer.
+
 ## Demo walkthrough
 
 1. Start the backend and frontend, then sign in using the administrator credentials exported before startup.

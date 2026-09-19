@@ -15,6 +15,7 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     List<Transaction> findByAccountAndOccurredAtBetweenOrderByOccurredAt(Account account, Instant from, Instant to);
     List<Transaction> findByAccountCustomerAndOccurredAtBetweenOrderByOccurredAt(
             Customer customer, Instant from, Instant to);
+    List<Transaction> findByAccount_ExternalIdOrderByOccurredAt(String accountExternalId);
 
         @Query("""
             select coalesce(sum(transaction.amountInr), 0) as totalAmount,

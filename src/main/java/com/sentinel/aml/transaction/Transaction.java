@@ -76,8 +76,11 @@ public class Transaction {
     public String getExternalId() { return externalId; }
     public Account getAccount() { return account; }
     public String getTransactionType() { return transactionType; }
+    public BigDecimal getAmount() { return amount; }
+    public String getCurrency() { return currency; }
     public BigDecimal getAmountInr() { return amountInr; }
     public String getCounterparty() { return counterparty; }
+    public String getChannel() { return channel; }
     public String getJurisdiction() { return jurisdiction; }
     public Instant getOccurredAt() { return occurredAt; }
 }
