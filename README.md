@@ -2,6 +2,12 @@
 
 Working hackathon prototype for real-time anti-money laundering monitoring. It imports reference and transaction data, evaluates configurable rules, prioritizes explainable alerts, and records case dispositions with an immutable audit trail.
 
+## Demo
+
+![Sentinel AML analyst dashboard](docs/demo/dashboard.png)
+
+See the [mobile dashboard screenshot](docs/demo/dashboard-mobile.png) for the responsive layout.
+
 ## Project structure
 
 ```text
