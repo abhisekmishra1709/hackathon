@@ -8,6 +8,8 @@ Working hackathon prototype for real-time anti-money laundering monitoring. It i
 
 See the [mobile dashboard screenshot](docs/demo/dashboard-mobile.png) for the responsive layout.
 
+The screenshots below were captured from a live run of the app and walk through the full ingestion → detection → alert → case disposition flow; see [Demo walkthrough](#demo-walkthrough) for the step-by-step narrative.
+
 ## Project structure
 
 ```text
@@ -104,16 +106,35 @@ Configure rule switches, thresholds, windows, country codes, counterparties, and
 
 ## Demo walkthrough
 
-1. Start the backend and frontend.
-2. Sign in using the administrator credentials exported before startup.
-3. Open **Data ingestion** and select the three files from `data/import/`.
-4. Click **Import and run detection**.
-5. Open a high-risk alert to inspect its explanation and transaction evidence.
-6. Create an investigation case.
-7. Open **Cases**, then close and escalate the case.
-8. Confirm the alert remains retained as `CLOSED`; administrators can inspect `/api/v1/audit-events`.
+1. Start the backend and frontend, then sign in using the administrator credentials exported before startup.
 
-The included transaction data generates threshold, structuring, rapid-movement, high-risk jurisdiction, and round-number detections.
+   ![Analyst signed in to the risk operations overview](docs/demo/walkthrough-1-overview.png)
+
+2. Open **Data ingestion** and select the three files from `data/import/` (customers, then accounts, then transactions).
+
+   ![Ingestion screen with customers, accounts, and transactions staged](docs/demo/walkthrough-2-ingestion.png)
+
+3. Click **Import and run detection**. Imported rows are validated and the detection engine evaluates every transaction, producing a prioritized, risk-scored alert queue.
+
+   ![Alert queue populated after ingestion and detection](docs/demo/walkthrough-3-alert-queue.png)
+
+4. Open an alert to inspect its risk score, matched rule(s), human-readable explanation, and supporting transaction evidence.
+
+   ![Alert detail panel showing risk score, rule, and evidence](docs/demo/walkthrough-4-alert-detail.png)
+
+### Case flow
+
+5. From the alert detail panel, click **Create investigation case**. This opens a new case linked to the alert and analyst identity, and navigates to **Cases**.
+
+   ![Case register showing a newly opened case](docs/demo/walkthrough-5-case-open.png)
+
+6. Review the case, then click **Close and escalate** to record the disposition.
+
+   ![Case register showing the case closed after disposition](docs/demo/walkthrough-6-case-closed.png)
+
+7. The alert remains retained as `CLOSED` rather than deleted, and the case, the disposition reason, and the analyst identity are preserved for audit. Administrators can inspect the full trail at `/api/v1/audit-events`.
+
+The included transaction data generates threshold, structuring, rapid-movement, high-risk jurisdiction, and round-number detections, and re-importing the same files is idempotent (no duplicate alerts).
 
 See [docs/architecture.md](docs/architecture.md) for the ERD and processing flow, and [docs/problem-statement.md](docs/problem-statement.md) for the challenge requirements.
 
