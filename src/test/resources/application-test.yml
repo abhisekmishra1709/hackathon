@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:sentinel-test;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+
+sentinel:
+  security:
+    admin-username: test-admin
+    admin-password: test-admin-password
+    analyst-username: test-analyst
+    analyst-password: test-analyst-password

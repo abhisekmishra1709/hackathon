@@ -1,0 +1,8 @@
+target/
+data/
+frontend/node_modules/
+frontend/dist/
+.env
+.idea/
+*.iml
+.DS_Store

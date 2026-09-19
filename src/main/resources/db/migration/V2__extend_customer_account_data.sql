@@ -1,0 +1,16 @@
+ALTER TABLE customers ADD COLUMN first_name VARCHAR(100);
+ALTER TABLE customers ADD COLUMN last_name VARCHAR(100);
+ALTER TABLE customers ADD COLUMN date_of_birth DATE;
+ALTER TABLE customers ADD COLUMN email VARCHAR(254);
+ALTER TABLE customers ADD COLUMN phone_number VARCHAR(40);
+ALTER TABLE customers ADD COLUMN city VARCHAR(100);
+ALTER TABLE customers ADD COLUMN state VARCHAR(100);
+ALTER TABLE customers ADD COLUMN annual_income DECIMAL(19, 4);
+ALTER TABLE customers ADD COLUMN customer_segment VARCHAR(30);
+ALTER TABLE customers ADD COLUMN kyc_status VARCHAR(30);
+ALTER TABLE customers ADD COLUMN politically_exposed BOOLEAN NOT NULL DEFAULT FALSE;
+
+ALTER TABLE accounts ADD COLUMN account_status VARCHAR(30) NOT NULL DEFAULT 'ACTIVE';
+ALTER TABLE accounts ADD COLUMN current_balance DECIMAL(19, 4) NOT NULL DEFAULT 0;
+ALTER TABLE accounts ADD COLUMN branch_code VARCHAR(30);
+ALTER TABLE accounts ADD COLUMN account_tier VARCHAR(30);

@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: sentinel-aml
+  profiles:
+    default: dev
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/sentinel}
+    username: ${DB_USERNAME:sentinel}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+server:
+  port: ${SERVER_PORT:8080}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+sentinel:
+  security:
+    admin-username: ${SENTINEL_ADMIN_USERNAME}
+    admin-password: ${SENTINEL_ADMIN_PASSWORD}
+    analyst-username: ${SENTINEL_ANALYST_USERNAME}
+    analyst-password: ${SENTINEL_ANALYST_PASSWORD}
+  rules:
+    threshold-enabled: ${AML_THRESHOLD_ENABLED:true}
+    structuring-enabled: ${AML_STRUCTURING_ENABLED:true}
+    rapid-movement-enabled: ${AML_RAPID_MOVEMENT_ENABLED:true}
+    high-risk-enabled: ${AML_HIGH_RISK_ENABLED:true}
+    behavioral-deviation-enabled: ${AML_BEHAVIORAL_DEVIATION_ENABLED:true}
+    round-number-enabled: ${AML_ROUND_NUMBER_ENABLED:true}
+    report-threshold-inr: ${AML_REPORT_THRESHOLD_INR:830000}
+    structuring-minimum-inr: ${AML_STRUCTURING_MINIMUM_INR:747000}
+    structuring-count: ${AML_STRUCTURING_COUNT:3}
+    structuring-window-hours: ${AML_STRUCTURING_WINDOW_HOURS:24}
+    rapid-movement-hours: ${AML_RAPID_MOVEMENT_HOURS:48}
+    rapid-movement-ratio: ${AML_RAPID_MOVEMENT_RATIO:0.80}
+    round-amount-unit-inr: ${AML_ROUND_AMOUNT_UNIT_INR:100000}
+    high-risk-jurisdictions: ${AML_HIGH_RISK_JURISDICTIONS:IR,KP,SY}
+    high-risk-counterparties: ${AML_HIGH_RISK_COUNTERPARTIES:}
+    exchange-rates-to-inr:
+      INR: ${FX_INR:1}
+      USD: ${FX_USD_INR:83}
+      EUR: ${FX_EUR_INR:90}
